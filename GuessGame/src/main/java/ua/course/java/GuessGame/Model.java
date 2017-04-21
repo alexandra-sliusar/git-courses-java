@@ -62,6 +62,14 @@ public class Model {
 		secretValue = rand(minValue, maxValue);
 	}
 
+	public void setExactSecretValue(int value) {
+		if (inBounds(value)) {
+			secretValue = value;
+		} else {
+			setSecretValue();
+		}
+	}
+
 	public ArrayList<Integer> getGuesses() {
 		return guesses;
 	}

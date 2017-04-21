@@ -13,9 +13,11 @@ public class Controller {
 	}
 
 	public void processUser() {
-		Scanner sc = new Scanner(System.in);
-		startGame();
-		playGame(sc);
+		// Scanner sc = new Scanner(System.in);
+		// startGame();
+		// playGame(sc);
+		startGameWithEnum();
+		playGameWithEnum();
 
 	}
 
@@ -59,4 +61,42 @@ public class Controller {
 		return false;
 	}
 
+	public void startGameWithEnum() {
+		model.setBounds(Constants.MIN_VALUE, Constants.MAX_VALUE);
+		model.setExactSecretValue(69);
+		view.printGameIsOn();
+	}
+
+	public void playGameWithEnum() {
+		view.printTryToGuessMessage(model);
+		for (Guesses g : Guesses.values()) {
+			view.printMessage(g.toString());
+			if (checkGuess(g.getValue())) {
+				break;
+			}
+		}
+		view.printCongratulationsMessage(model);
+		view.printUserGuesses(model);
+
+	}
+
+}
+
+enum Guesses {
+	Guess1(1), Guess2(4), Guess3(78), Guess4(96), Guess5(32), Guess6(55), Guess7(60), Guess8(74), Guess9(63), Guess10(
+			69);
+
+	private final int value;
+
+	Guesses(final int newValue) {
+		value = newValue;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public String toString() {
+		return String.valueOf(getValue());
+	}
 }
