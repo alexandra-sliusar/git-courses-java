@@ -21,7 +21,16 @@ public class Controller {
 		Utilities utilities = new Utilities(view, scanner);
 		ControllerNotebook contrNotebook = new ControllerNotebook(view, model, utilities);
 		contrNotebook.setAllValues();
-		contrNotebook.transferValuesIntoModel();
+
+		while (true) {
+			try {
+				contrNotebook.transferValuesIntoModel();
+				break;
+			} catch (DublicateNicknameException e) {
+				System.err.println(e.getMessage());
+				contrNotebook.setNickname();
+			}
+		}
 		view.printMessage(model.toString());
 	}
 }

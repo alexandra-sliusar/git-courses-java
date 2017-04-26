@@ -1,5 +1,11 @@
 package ua.course.java.AddressBook.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import ua.course.java.AddressBook.view.StringConstants;
+import ua.course.java.AddressBook.сontroller.DublicateNicknameException;
+
 public class Model {
 	private String name;
 	private String lastname;
@@ -30,6 +36,7 @@ public class Model {
 
 	public void setName(String name) {
 		this.name = name;
+		setDateOfModification();
 	}
 
 	public String getLastname() {
@@ -38,6 +45,7 @@ public class Model {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+		setDateOfModification();
 	}
 
 	public String getPatronymic() {
@@ -46,6 +54,7 @@ public class Model {
 
 	public void setPatronymic(String patronymic) {
 		this.patronymic = patronymic;
+		setDateOfModification();
 	}
 
 	public String getFullName() {
@@ -54,14 +63,20 @@ public class Model {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+		setDateOfModification();
 	}
 
 	public String getNickname() {
 		return nickname;
 	}
 
-	public void setNickname(String nickname) {
+	public void setNickname(String nickname) throws DublicateNicknameException {
+		for (Nicknames nick : Nicknames.values()) {
+			if (nick.getValue().equals(nickname))
+				throw new DublicateNicknameException(StringConstants.DUBLICATE_NAME);
+		}
 		this.nickname = nickname;
+		setDateOfModification();
 	}
 
 	public String getHomenumber() {
@@ -70,6 +85,7 @@ public class Model {
 
 	public void setHomenumber(String homenumber) {
 		this.homenumber = homenumber;
+		setDateOfModification();
 	}
 
 	public String getMobilenumber1() {
@@ -78,6 +94,7 @@ public class Model {
 
 	public void setMobilenumber1(String mobilenumber1) {
 		this.mobilenumber1 = mobilenumber1;
+		setDateOfModification();
 	}
 
 	public String getMobilenumber2() {
@@ -86,6 +103,7 @@ public class Model {
 
 	public void setMobilenumber2(String mobilenumber2) {
 		this.mobilenumber2 = mobilenumber2;
+		setDateOfModification();
 	}
 
 	public String getEmail() {
@@ -94,6 +112,7 @@ public class Model {
 
 	public void setEmail(String email) {
 		this.email = email;
+		setDateOfModification();
 	}
 
 	public String getSkype() {
@@ -102,6 +121,7 @@ public class Model {
 
 	public void setSkype(String skype) {
 		this.skype = skype;
+		setDateOfModification();
 	}
 
 	public String getIndex() {
@@ -110,6 +130,7 @@ public class Model {
 
 	public void setIndex(String index) {
 		this.index = index;
+		setDateOfModification();
 	}
 
 	public String getTown() {
@@ -118,6 +139,7 @@ public class Model {
 
 	public void setTown(String town) {
 		this.town = town;
+		setDateOfModification();
 	}
 
 	public String getStreet() {
@@ -126,6 +148,7 @@ public class Model {
 
 	public void setStreet(String street) {
 		this.street = street;
+		setDateOfModification();
 	}
 
 	public String getHouseNumber() {
@@ -134,6 +157,7 @@ public class Model {
 
 	public void setHouseNumber(String houseNumber) {
 		this.houseNumber = houseNumber;
+		setDateOfModification();
 	}
 
 	public String getApartmentNumber() {
@@ -142,6 +166,7 @@ public class Model {
 
 	public void setApartmentNumber(String apartmentNumber) {
 		this.apartmentNumber = apartmentNumber;
+		setDateOfModification();
 	}
 
 	public String getFullAddress() {
@@ -150,6 +175,7 @@ public class Model {
 
 	public void setFullAddress(String fullAddress) {
 		this.fullAddress = fullAddress;
+		setDateOfModification();
 	}
 
 	public String getDateOfCreation() {
@@ -158,6 +184,7 @@ public class Model {
 
 	public void setDateOfCreation(String dateOfCreation) {
 		this.dateOfCreation = dateOfCreation;
+		setDateOfModification();
 	}
 
 	public String getDateOfModification() {
@@ -166,6 +193,12 @@ public class Model {
 
 	public void setDateOfModification(String dateOfModification) {
 		this.dateOfModification = dateOfModification;
+	}
+
+	public void setDateOfModification() {
+		Date date = new Date();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(StringConstants.DATE_PATTERN);
+		dateOfModification = simpleDateFormat.format(date);
 	}
 
 	@Override
@@ -177,4 +210,22 @@ public class Model {
 				+ getDateOfModification();
 	}
 
+}
+
+enum Nicknames {
+	User1("admin"), User2("root"), User3("Hero123"), User4("login-example"), User5("Nickynamey"), User6("last_one");
+
+	private final String value;
+
+	Nicknames(final String newValue) {
+		value = newValue;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public String toString() {
+		return getValue();
+	}
 }

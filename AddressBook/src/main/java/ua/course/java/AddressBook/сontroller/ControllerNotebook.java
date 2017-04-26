@@ -32,7 +32,6 @@ public class ControllerNotebook {
 	private String apartmentNumber;
 
 	private String dateOfCreation;
-	private String dateOfModification;
 
 	public ControllerNotebook(View view, Model model, Utilities utilities) {
 		this.view = view;
@@ -47,7 +46,6 @@ public class ControllerNotebook {
 		setPhones();
 		setEmailAndSkype();
 		setAddress();
-		setDateOfModification();
 	}
 
 	public void setFullname() {
@@ -107,12 +105,6 @@ public class ControllerNotebook {
 		dateOfCreation = simpleDateFormat.format(date);
 	}
 
-	public void setDateOfModification() {
-		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(StringConstants.DATE_PATTERN);
-		dateOfModification = simpleDateFormat.format(date);
-	}
-
 	public String getFullAddress() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(town).append(StringConstants.COMA_SYMBOL).append(StringConstants.SPACE_SYMBOL).append(street)
@@ -124,11 +116,12 @@ public class ControllerNotebook {
 		return sb.toString();
 	}
 
-	public void transferValuesIntoModel() {
+	public void transferValuesIntoModel() throws DublicateNicknameException {
 		model.setName(name);
 		model.setLastname(lastname);
 		model.setPatronymic(patronymic);
 		model.setFullName(getShortName());
+
 		model.setNickname(nickname);
 
 		model.setHomenumber(homenumber);
@@ -146,6 +139,5 @@ public class ControllerNotebook {
 		model.setFullAddress(getFullAddress());
 
 		model.setDateOfCreation(dateOfCreation);
-		model.setDateOfModification(dateOfModification);
 	}
 }

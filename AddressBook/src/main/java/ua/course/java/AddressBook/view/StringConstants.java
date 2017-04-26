@@ -23,4 +23,5 @@ public interface StringConstants {
 	String INPUT_STREET = "street!";
 	String INPUT_HOUSENUMBER = "house number!";
 	String INPUT_APTNUMBER = "apartment number!";
+	String DUBLICATE_NAME = "Nickname is already created!";
 }
