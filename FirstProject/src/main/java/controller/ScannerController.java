@@ -20,7 +20,7 @@ public class ScannerController {
 		return value;
 	}
 
-	private boolean checkWithRegex(String string, String regex) {
+	public boolean checkWithRegex(String string, String regex) {
 		return string.matches(regex);
 	}
 
