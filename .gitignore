@@ -3,8 +3,27 @@
 /Cpu And Queue/
 /FlowControl/
 /Matrix/
-/Parallel Stream/
 /PatternFactory/
 /Test/
 /Threading Sum/
 /MavenAndGit/
+/AbstractFactory/
+/Adapter/
+/Builder/
+/ChainOfResponsibility/
+/Composite/
+/Decorator/
+/Facade/
+/Factory Method/
+/Delegate/
+/Iterator/
+/Mediator/
+/Memento/
+/Observer/
+/PatternExample/
+/Prototype/
+/Singleton/
+/State/
+/Strategy/
+/TemplateMethod/
+/Visitor/
