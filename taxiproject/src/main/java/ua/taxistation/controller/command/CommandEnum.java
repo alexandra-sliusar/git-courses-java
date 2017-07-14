@@ -1,6 +1,7 @@
 package ua.taxistation.controller.command;
 
 import ua.taxistation.controller.command.realization.HomeCommand;
+import ua.taxistation.controller.command.realization.authorization.LoginPageCommand;
 
 public enum CommandEnum {
 	HOME {
@@ -9,6 +10,13 @@ public enum CommandEnum {
 			this.command = new HomeCommand();
 		}
 	},
+	LOGIN_PAGE {
+		{
+			this.key = "";
+			this.command = new LoginPageCommand();
+		}
+	},
+
 	PAGE_NOT_FOUND {
 		{
 			this.key = "errorPage";
