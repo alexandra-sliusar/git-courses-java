@@ -1,3 +1,5 @@
 /target/
 /.settings/
 /WebContent/
+.classpath
+.project
